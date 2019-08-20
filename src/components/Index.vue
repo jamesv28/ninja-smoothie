@@ -4,6 +4,9 @@
       <div class="col sm12 m6" v-for="smoothie in smoothies" :key="smoothie.id">
         <div class="card" >
           <div class="card-content ">
+            <button class="delete" @click="deleteSmoothie(smoothie.id)">
+              <i class="material-icons " >delete</i>
+            </button>
             <span class="card-title indigo-text center-align">
               {{ smoothie.title }}
             </span>
@@ -41,6 +44,13 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    deleteSmoothie(id) {
+      this.smoothies = this.smoothies.filter(smoothie => {
+        return smoothie.id != id
+      })
+    }
   }
 }
 </script>
@@ -57,5 +67,18 @@ export default {
   .chip {
     background-color: #607d8b;
     color: #ffffff;
+  }
+  .delete {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    cursor: pointer;
+    color: #aaaaaa;
+    background: none;
+    border: 0;
+    font-size: 1.4em;
+  }
+  .delete:active {
+    background:none;
   }
 </style>
