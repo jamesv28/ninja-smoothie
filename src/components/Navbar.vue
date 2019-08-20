@@ -6,13 +6,13 @@
                     Ninja Smoothies
                 </span>
             </router-link>
-            <a href="" class="btn-floating btn-large halfway-fab waves-effect waves-light teal">
+            <button href="" class="btn-floating btn-large halfway-fab waves-effect waves-light light-blue lighten-1">
                 <router-link to="">
                     <i class="material-icons">
                         add
                     </i>
                 </router-link>
-            </a>
+            </button>
         </div>
     </nav>
     
