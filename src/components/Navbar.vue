@@ -1,13 +1,13 @@
 <template>
     <nav>
         <div class="nav-wrapper purple darken-1">
-            <router-link to="">
+            <router-link :to="{name: 'Index'}">
                 <span class="brand-logo">
                     {{ title }}
                 </span>
             </router-link>
             <button href="" class="btn-floating btn-large halfway-fab waves-effect waves-light light-blue lighten-1" >
-                <router-link to="">
+                <router-link :to="{name: 'AddSmoothie'}">
                     <i class="material-icons">
                         add
                     </i>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'Navbar',
     data() {
