@@ -6,13 +6,19 @@
                 <label for="title">Title</label>
                 <input type="text" id="title" v-model="title">
             </div>
+            <div class="field input-field" v-for="(ing, index) in ingredients" :key="index">
+                <label for="ingredients">Ingredients</label>
+                <input type="text" name="ingredients" v-model="ingredients[index]">
+            </div>
             <div class="field ingredients input-field">
                 <label for="ingredients">Add Ingredient</label>
-                <input type="text" id="ingredients" >
+                <input type="text" id="ingredients" @keydown.tab.prevent="addIng" v-model="another">
             </div>
             <div class="field center-align">
+                <p v-if="feedback" class="pink-text accent-2">{{feedback}}</p>
                 <button class="btn pink accent-2 addSmoothie">Add Smoothie</button>
             </div>
+            
         </form>
    </div> 
 </template>
@@ -23,12 +29,24 @@ export default {
     data() {
         return {
             title: null,
-
+            another: null,
+            ingredients: [],
+            feedback: null
         }
     },
     methods: {
         addSmoothie() {
-            console.log(this.title)
+            console.log(this.title);
+            console.log('hello', this.ingredients)
+        },
+        addIng() {
+            if(this.another) {
+                this.ingredients.push(this.another);
+                this.another = null;
+                this.feedback = null
+            } else {
+                this.feedback = "you must add an ingredient to a smoothie"
+            }
         }
     }
 }

@@ -4,7 +4,7 @@
       <div class="col sm12 m6" v-for="smoothie in smoothies" :key="smoothie.id">
         <div class="card" >
           <div class="card-content ">
-            <button class="delete" @click="deleteSmoothie(smoothie.id)">
+            <button class="delete" @click="deleteSmoothie(smoothie.id)" title="delete">
               <i class="material-icons " >delete</i>
             </button>
             <span class="card-title indigo-text center-align">
