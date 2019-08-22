@@ -1,0 +1,20 @@
+<template>
+    <div class="container">
+        <h2>Edit Smoothie {{this.$route.params.smoothie_slug }}</h2>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'EditSmoothie',
+    data() {
+        return {
+
+        }
+    }
+}
+</script>
+
+<style>
+    
+</style>

@@ -18,6 +18,13 @@
               </li>
             </ul>
           </div>
+          <button class="btn btn-floating halfway-fab purple accent-2">
+              <router-link :to="{name: 'EditSmoothie', params: {smoothie_slug: smoothie.slug}}">
+                <i class="material-icons">
+                  edit
+                </i>
+              </router-link>
+          </button>
         </div>
       </div>
     </div>
@@ -70,6 +77,7 @@ export default {
     background-color: #607d8b;
     color: #ffffff;
   }
+
   .delete {
     position: absolute;
     top: 4px;
@@ -86,5 +94,6 @@ export default {
   }
   .card {
     height: 250px;
+    margin-bottom: 25px;
   }
 </style>

@@ -6,9 +6,10 @@
                 <label for="title">Title</label>
                 <input type="text" id="title" v-model="title">
             </div>
-            <div class="field input-field" v-for="(ing, index) in ingredients" :key="index">
+            <div class="field input-field add-ingredients" v-for="(ing, index) in ingredients" :key="index">
                 <label for="ingredients">Ingredients</label>
                 <input type="text" name="ingredients" v-model="ingredients[index]">
+                <i class="material-icons deleteIcon" @click="deleteIng(ing)">delete</i>
             </div>
             <div class="field ingredients input-field">
                 <label for="ingredients">Add Ingredient</label>
@@ -40,14 +41,16 @@ export default {
     },
     methods: {
         addSmoothie() {
-            if(this.title) {
+            if(this.title && this.ingredients.length != 0) {
                 this.feedback = null;
+
                 // create slug
                 this.slug = slugify(this.title, {
                     replacement: '-',
                     remove: /[$*_+~.()'"|\-@:]/g,
                     lower: true
                 });
+
                 db.collection('smoothies').add({
                     title: this.title,
                     ingredients: this.ingredients,
@@ -57,8 +60,9 @@ export default {
                 }).catch( err => {
                     console.log('err',err);
                 })
-            } else {
-                this.feedback = "you must add smoothie title";
+            } 
+            else {
+                this.feedback = "you must add smoothie title and at least one ingredient";
             }
         },
         addIng() {
@@ -69,12 +73,21 @@ export default {
             } else {
                 this.feedback = "you must add an ingredient to a smoothie"
             }
+        },
+        deleteIng(ing) {
+            this.ingredients = this.ingredients.filter(ingredient => {
+                return ingredient != ing
+            })
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
+    input {
+        margin-top: 30px !important;
+    }
+
     .page-title {
         font-size: 2.5rem;
         margin-top: 80px;
@@ -90,5 +103,17 @@ export default {
     .input-field input[type=text]:focus {
       border-bottom: 1px solid #8e24aa !important;
       box-shadow: 0 1px 0 0 #000;
+    }
+    .add-ingredients {
+        margin: 20px auto;
+        position: relative;
+    }
+    .deleteIcon {
+        position: absolute;
+        right: 0;
+        bottom: 15px;
+        color: #aaaaaa;
+        font-size: .43m;
+        cursor: pointer;
     }
 </style>
